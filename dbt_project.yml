@@ -39,3 +39,5 @@ models:
 
     bussiness:
       +materialized: table
+      +grants:
+        select: ['PUBLIC']
