@@ -33,11 +33,14 @@ models:
   proyecto_dbt_intermedio:
     staging:
       +materialized: table
+      +tags: 'staging'
     
     intermediate:
       +materialized: view
+      +tags: 'intermediate'
 
     bussiness:
       +materialized: table
+      +tags: 'bussiness'
       +grants:
         select: ['PUBLIC']
