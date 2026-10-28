@@ -82,7 +82,7 @@ sources:
             tests:
               - is_valid_date_range:
                   arguments: 
-                    start_date: '1992-01-01'
+                    min_date: '1992-01-01'
 
       - name: part
         description: Information about parts

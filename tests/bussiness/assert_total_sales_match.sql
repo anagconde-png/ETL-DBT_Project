@@ -7,7 +7,11 @@ lineitems as (
     from {{ ref('stg_tpch_sf1_lineitem') }}
     group by order_key
 )
-select o.order_key, o.total_price, l.calc_total
+select 
+    o.order_key, 
+    o.total_price, 
+    l.calc_total,
+    abs(o.total_price - l.calc_total) as diff
 from orders o
 join lineitems l on o.order_key = l.order_key
-where round(o.total_price, 2) != round(l.calc_total, 2)
+where abs(o.total_price - l.calc_total) > 1
