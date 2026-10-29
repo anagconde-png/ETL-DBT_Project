@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: int_customers
+    description: Intermediate model that denormalizes a customer and its region and nation
+    columns:
+      - name: customer_key
+        description: Customer primary key
+        tests:
+          - unique
+          - not_null
+      - name: nation_name
+        description: Clients's nation name
+        tests:
+          - not_null
+
+  - name: int_parts
+    description: Intermediate model with information about the parts
+    columns:
+      - name: part_key
+        description: Primary key of the parts
+        tests:
+          - unique
+          - not_null
+      - name: retail_price
+        description: Retail price of the piece
+        tests:
+          - not_null
+
+  - name: int_suppliers
+    description: Intermediate model that denormalizes a suppliers and its region and nation
+    columns:
+      - name: supplier_key
+        description: Primary key of the supplier
+        tests:
+          - unique
+          - not_null
+
+  - name: int_order_items
+    description: Intermediate model that joins the orders with its item lines
+    columns:
+      - name: order_item_key
+        description: Generated surrogate key made out of joining order_key and line_number
+        tests:
+          - unique
+          - not_null
+      - name: order_key
+        description: Foreign key for order
+        tests:
+          - not_null
+      - name: return_flag
+        description: Flag returned
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['A', 'R', 'N']
+      - name: line_status
+        description: Status of the line
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['O', 'F']

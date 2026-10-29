@@ -8,7 +8,7 @@ with source as (
         {{ adapter.quote("C_ADDRESS") }} as address,
         {{ adapter.quote("C_NATIONKEY") }} as nation_key,
         {{ adapter.quote("C_PHONE") }} as phone,
-        {{ adapter.quote("C_ACCTBAL") }} as actual_balance,
+        {{ adapter.quote("C_ACCTBAL") }} as account_balance,
         {{ adapter.quote("C_MKTSEGMENT") }} as market_segment,
         {{ adapter.quote("C_COMMENT") }} as comment
 

@@ -13,7 +13,7 @@ select
     c.name as customer_name,
     c.address as customer_address,
     c.phone as customer_phone,
-    c.actual_balance,
+    c.account_balance,
     c.market_segment,
     n.name as nation_name,
     r.name as region_name
