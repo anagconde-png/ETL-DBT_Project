@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Customers dimension
+    columns:
+      - name: customer_key
+        tests:
+          - unique
+          - not_null
+  - name: dim_parts
+    description: Parts dimension
+    columns:
+      - name: part_key
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_suppliers
+    description: Suppliers dimension
+    columns:
+      - name: supplier_key
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_order_items
+    description: Fact table for orders and items
+    columns:
+      - name: order_item_key
+        tests:
+          - unique
+          - not_null
+      - name: discount
+        description: Line discount
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 0
+                max_value: 0.20
+      - name: tax
+        description: Taxes
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              arguments:
+                min_value: 0
+                max_value: 0.15
+      - name: order_date
+        description: The date of the order
+        tests:
+          - not_null
